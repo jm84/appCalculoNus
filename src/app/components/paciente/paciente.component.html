@@ -1,0 +1,75 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <h5 class="card-title text-center">Datos Paciente</h5>
+    <div *ngIf="formularioIncorrecto" class="text-center">
+      <span class="badge rounded-pill text-bg-danger"
+        >Todos los Campos son requeridos</span
+      >
+    </div>
+    <div class="form-group mb-3">
+      <label for="nombre">Nombre: </label>
+      <input
+        [(ngModel)]="nombre"
+        type="text"
+        id="nombre"
+        class="form-control"
+        placeholder="Ingrese nombre Paciente"
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="Nuu24hr">Nuu/24hr: </label>
+      <input
+        [(ngModel)]="Nuu24hr"
+        type="number"
+        id="Nuu24hr"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="protIngerida">Proteina Ingerida: </label>
+      <input
+        [(ngModel)]="protIngerida"
+        type="number"
+        id="protIngerida"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="peso">Peso: </label>
+      <input [(ngModel)]="peso" type="number" id="peso" class="form-control" />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="alimentacion">Alimentación: (Oral, NE, NP)</label>
+      <input
+        [(ngModel)]="alimentacion"
+        type="text"
+        id="alimentacion"
+        class="form-control"
+      />
+    </div>
+
+    <!-- <div class="form-group mb-3">
+      <mat-form-field>
+        <mat-label>Tipo Alimentacion</mat-label>
+        <mat-select formControlName="alimentacion">
+          <mat-option
+            *ngFor="let tipoalimentacion of tiposdealimentacion"
+            [value]="tipoalimentacion"
+          >
+            {{ tipoalimentacion }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> -->
+    <button
+      (click)="datosPaciente()"
+      style="width: 100%"
+      class="btn btn-primary btn-block"
+    >
+      Calcular Nus
+    </button>
+  </div>
+</div>

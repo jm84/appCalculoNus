@@ -1,0 +1,129 @@
+<div *ngIf="listadoCalculoPaciente.length === 0" class="card bg-light">
+  <div class="card-body">
+    <h5 class="card-title text-center">No hay resultados para mostra</h5>
+  </div>
+</div>
+
+<div
+  *ngFor="let pacientecalculo of listadoCalculoPaciente; let i = index"
+  class="card mb-2"
+>
+  <div class="card-body">
+    <p class="card-text">
+      <span>Nombre Paciente: </span>{{ pacientecalculo.nombre }}
+    </p>
+    <p class="card-text">
+      <span>Fecha de cálculo: </span>{{ pacientecalculo.FechaCalculo }}
+    </p>
+    <p class="card-text">
+      <mat-accordion>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Balance Nitrogenado</mat-panel-title>
+            <mat-panel-description>
+              Formula: (Nitrogeno Ingerido - Nitrogeno Excretado)
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div
+            [ngClass]="{
+              'text-success': pacientecalculo.balanceNitrogenado > 0,
+              'text-danger': pacientecalculo.balanceNitrogenado < 0
+            }"
+          >
+            <span>
+              <strong
+                >{{ pacientecalculo.balanceNitrogenado }} Gramos</strong
+              ></span
+            >
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </p>
+    <p class="card-text">
+      <mat-accordion>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Balance Nitrogenado Neutro </mat-panel-title>
+            <mat-panel-description>
+              Formula: (Nitrogeno Excretado x 6.25)/peso
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            <strong>{{ pacientecalculo.balanceNeutro }} GR/KG/DIA</strong>
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </p>
+    <p class="card-text">
+      <mat-accordion>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Balance Nitrogenado Positivo </mat-panel-title>
+            <mat-panel-description>
+              Formula: ((Nitrogeno Excretado +2 o +7)x 6.25)/ peso
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            Balance positivo (+2):
+            <strong>{{ pacientecalculo.balancePositivoMin }} GR/KG/DIA</strong>
+          </p>
+          <p>
+            Balance positivo (+7):
+            <strong>
+              {{ pacientecalculo.balancePositivoMax }} GR/KG/DIA
+            </strong>
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </p>
+
+    <p class="card-text">
+      <mat-accordion>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Grado de Estres (NUT) </mat-panel-title>
+            <mat-panel-description>
+              <p>Formula: ((Nitrogeno Excretado)x 1000)/ peso</p>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Leve: menor a 200</p>
+          <p>Moderado: 200-300</p>
+          <p>Severo: Mayor a 300</p>
+          <p
+            [ngClass]="{
+              'text-success': pacientecalculo.valornut < 200,
+              'text-warning':
+                pacientecalculo.valornut >= 200 &&
+                pacientecalculo.valornut < 300,
+              'text-danger': pacientecalculo.valornut >= 300
+            }"
+          >
+            <strong
+              >{{ pacientecalculo.valornut }} MG - Estres
+              {{ pacientecalculo.estresnut }}</strong
+            >
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </p>
+    <button
+      (click)="eliminarConsulta(i)"
+      style="width: 100%"
+      class="btn btn-danger btn-block"
+    >
+      ELIMINAR
+    </button>
+  </div>
+</div>
