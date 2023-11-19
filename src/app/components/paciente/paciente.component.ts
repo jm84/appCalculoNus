@@ -10,9 +10,9 @@ export class PacienteComponent {
   tiposdealimentacion: string[] = ['Oral', 'NE', 'NP'];
   nombre: string = '';
   FechaCalculo: Date = new Date(this.today);
-  Nuu24hr: number = 0;
-  protIngerida: number = 0;
-  peso: number = 0;
+  Nuu24hr: number | null = null;
+  protIngerida: number | null = null;
+  peso: number | null = null;
   alimentacion: string = '';
   balanceNitrogenado: number = 0;
   balanceNeutro: number = 0;

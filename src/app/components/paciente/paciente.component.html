@@ -24,6 +24,7 @@
         type="number"
         id="Nuu24hr"
         class="form-control"
+        min="0"
       />
     </div>
     <div class="form-group mb-3">
@@ -33,15 +34,22 @@
         type="number"
         id="protIngerida"
         class="form-control"
+        min="0"
       />
     </div>
 
     <div class="form-group mb-3">
       <label for="peso">Peso: </label>
-      <input [(ngModel)]="peso" type="number" id="peso" class="form-control" />
+      <input
+        [(ngModel)]="peso"
+        type="number"
+        id="peso"
+        class="form-control"
+        min="0"
+      />
     </div>
 
-    <div class="form-group mb-3">
+    <!-- <div class="form-group mb-3">
       <label for="alimentacion">Alimentación: (Oral, NE, NP)</label>
       <input
         [(ngModel)]="alimentacion"
@@ -49,6 +57,16 @@
         id="alimentacion"
         class="form-control"
       />
+    </div> -->
+
+    <div class="form-group mb-3">
+      <label for="cars">Seleccionar Tipo de Alimentación:</label>
+
+      <select id="cars" [(ngModel)]="alimentacion" class="form-control">
+        <option value="Oral" selected>Oral</option>
+        <option value="NE">NE</option>
+        <option value="NP">NP</option>
+      </select>
     </div>
 
     <!-- <div class="form-group mb-3">
